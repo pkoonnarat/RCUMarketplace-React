@@ -1,0 +1,30 @@
+<input placeholder='Firstname' onChange={(event) => {setFName(event.target.value )}}></input>
+        <input placeholder='Lastname' onChange={(event) => {setLName(event.target.value)}}></input>
+        <input placeholder='Room' onChange={(event) => (setRoom(event.target.value))}></input>
+        <button onClick={createUser}>Create User</button>
+
+        {users.map((user) => {
+          return <div> 
+          <h1>Name : {user.fname} {user.lname}</h1>
+          <p>Room : {user.room}</p>
+        </div>})}
+## COMMAND INSIDE HTML TO VIEW LIST OF USERS ##
+
+
+
+       {users.map((user) => {return(
+        <div className="home-feature-card">
+  <div className="home-container04">
+    <img
+      src="https://user-images.githubusercontent.com/11250/39013954-f5091c3a-43e6-11e8-9cac-37cf8e8c8e4e.jpg"
+      alt="image"
+      className="home-image"
+    />
+    <div className="home-container05">
+      <h1 className="home-text">{user.fname} {user.lname}</h1>
+      <div className="home-container06">
+        <span className="home-text01"> Room : {user.room}</span>
+      </div>
+    </div>
+  </div>
+</div>);})}
