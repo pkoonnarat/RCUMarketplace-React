@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap - Prebuilt Layout</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap-4.4.1.css" rel="stylesheet">
+    <style type="text/css">
+    .พแฟ {
+}
+    </style>
+  </head>
+  <body>
+<h1 align="center">Post &nbsp;</h1>
+  <hr class="hrx"><br>
+<div class="container rcorners2">
+  <label for="Tpic">Topic</label><br>
+  &nbsp;<input name="Tpic" type="text" cols="35" class="rcorners2" id="Tpic"><br>
+  <label for="Dcpt">Description</label><br>
+  &nbsp;<textarea name="freeform" cols="35" rows="5" class="rcorners2" id="freeform">
+</textarea>
+	<div>
+  Tags<br></div>
+	  <div>
+    Type<br>&nbsp;
+<label>
+      <input type="checkbox" data-limit="only-one-in-a-group" name="groupOne" value="Eat" />
+        ส่งต่อ        </label>
+    <label>
+        <input type="checkbox" data-limit="only-one-in-a-group" name="groupOne" value="Sleep" />
+        ตามหา</label>
+</div>
+<script>
+    let cbxes = document.querySelectorAll('input[type="checkbox"][data-limit="only-one-in-a-group"]');
+    [...cbxes].forEach((cbx) => {
+        cbx.addEventListener('change', (e) => {
+            if (e.target.checked)
+                uncheckOthers(e.target);
+        });
+    });
+    function uncheckOthers (clicked) {
+        let name = clicked.getAttribute('name');
+        // find others in same group, uncheck them
+        [...cbxes].forEach((other) => {
+            if (other != clicked && other.getAttribute('name') == name)
+                other.checked = false;
+        });
+    }
+</script>
+		  
+  <label for="InImg">Image&nbsp;</label>
+  <br>
+<form action="upload.php" method="post">
+    &nbsp;<input type="file" name="file" id="file"/>
+</form>
+	&nbsp; &nbsp;<br>
+  <button type="button" class="btn btn-primary" align="center">Post</button>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+    <script src="jquery-3.4.1.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed --> 
+    <script src="popper.min.js"></script>
+    <script src="bootstrap-4.4.1.js"></script>
+  </body>
+</html>
