@@ -2642,6 +2642,30 @@ fieldset:disabled a.btn {
   border-color: #007bff;
 }
 
+.btn-primary-pink {
+  color: #fff;
+  background-color: #d96c9a;
+  border-color: #d96c9a;
+}
+
+.btn-primary-pink:hover {
+  color: #fff;
+  background-color: #b54a77;
+  border-color: #d96c9a;
+}
+
+.btn-primary-dark {
+  color: rgb(30, 29, 29);
+  background-color: #FFFFFF;
+  border-color: #161C2E;
+}
+
+.btn-primary-dark:hover {
+  color: #fff;
+  background-color: #161C2E;
+  border-color: #161C2E;
+}
+
 .btn-primary:hover {
   color: #fff;
   background-color: #0069d9;

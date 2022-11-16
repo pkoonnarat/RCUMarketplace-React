@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Link, Router } from "react-router-dom";
-import firebase from "firebase/compat/app";
 import {
   collection,
   Firestore,
@@ -14,6 +13,8 @@ import {
 import liff from "@line/liff";
 import logo from "./logo.svg";
 import "./css/bootstrap-4.4.1.css";
+import './FirebaseService'
+import FirebaseService from "./FirebaseService";
 
 function Register() {
   const [createFName, setFName] = useState("");
@@ -70,18 +71,7 @@ function Register() {
   }, []);
 
   /////////////// SEND DATA TO FIRESTORE //////////
-  const firebaseConfig = {
-    apiKey: "AIzaSyBtD4fzZm4jRRLL-Kba211etI6jJJl1yko",
-    authDomain: "rcumarketplace.firebaseapp.com",
-    projectId: "rcumarketplace",
-    storageBucket: "rcumarketplace.appspot.com",
-    messagingSenderId: "560613943301",
-    appId: "1:560613943301:web:eb0d0bda5009f4090e146c",
-    measurementId: "G-6X6W93HP1P",
-  };
-
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+  const db = FirebaseService()
   const usersCollectionRef = collection(db, "users");
 
   const createUser = async () => {
@@ -117,22 +107,27 @@ function Register() {
         <form>
           <form class="col-lg-12">
             <div class="form-group">
-              <label for="exampleInputEmail1">ชื่อจริง</label>
-              <input class="form-control" onChange={(event) => {setFName(event.target.value)}} placeholder="Firstname"/>
+              <label for="exampleInputEmail1">ชื่อจริง ๆ</label>
+              <div className="row">
+              <div className="col"><input class="form-control" onChange={(event) => {setFName(event.target.value)}} placeholder="ชื่อจริง"/></div>
+              <div className="col"><input class="form-control" id="exampleInputPassword1" onChange={(event) => {setLName(event.target.value)}} placeholder="นามสกุล"/></div>
+              </div>
               <small id="emailHelp1" class="form-text text-muted">เราสัญญาว่าจะไม่เปิดเผยชื่อจริงของคุณ</small> </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">นามสกุล</label>
-              <input class="form-control" id="exampleInputPassword1" onChange={(event) => {setLName(event.target.value)}} placeholder="Lastname"/>
-            </div>
             <div class="form-group">
               <label for="exampleInputEmail1">ยูสเซอร์เนม</label>
               <input class="form-control" onChange={(event) => {setFName(event.target.value)}} placeholder="Enter username" value={displayName}/>
               <small id="emailHelp1" class="form-text text-muted">ชื่อที่แสดงให้ผู้ใช้คนอื่น</small> 
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Room</label>
-              <input class="form-control" onChange={(event) => {setFName(event.target.value)}} placeholder="000A"/>
-              <small id="emailHelp1" class="form-text text-muted">เลขห้องตามด้วยเตียง เช่น 112A</small> 
+            <div className="row">
+              <div className="col"><label for="exampleInputEmail1">ห้อง</label></div>
+              <div className="col"><label for="exampleInputEmail1">รหัสนิสิต</label></div>
+              </div>
+              <div className="row">
+                <div className="col"><input class="form-control" onChange={(event) => {setFName(event.target.value)}} placeholder="000A"/></div>
+                <div className="col"><input class="form-control" onChange={(event) => {setFName(event.target.value)}} placeholder="รหัสนิสิต 10 หลัก"/></div>
+              </div>
+              <small id="emailHelp1" class="form-text text-muted">ข้อมูลนี้จะไม่ถูกเปิดเผย</small> 
             </div>
             <div class="form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1"/>

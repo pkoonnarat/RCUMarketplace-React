@@ -17,12 +17,18 @@ import Navbar from './Navbar';
 import Register from './Register';
 import ProductContainer from './ProductContainer';
 import Landing from './Landing';
+import Post from './Post';
+import BottomNavBar from './BottomNavBar';
+import UploadService from './UploadService';
 
 
+
+//<BottomNavBar/> เอาออกก่อน
 const App = () => {
   return(<div>
     <ErrorBoundary><div>
       <Navbar/>
+      
       </div>
       <br></br>
       <br></br>
@@ -32,6 +38,7 @@ const App = () => {
         <Route path="/register" element={<Register/>}/>
         <Route path="/productcontainer" element={<ProductContainer/>}/>
         <Route path="/post" element={<Post/>}></Route>
+        <Route path="/demo" element={<UploadService></UploadService>}></Route>
     </Routes>
     </div>
     </ErrorBoundary></div>);
