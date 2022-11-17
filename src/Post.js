@@ -2,6 +2,7 @@ import React,{useState,useEffect} from "react";
 import { Component } from "react";
 import "./css/bootstrap-4.4.1.css"
 import UploadService from "./UploadService";
+import ImgUploadService from "./ImgUploadService";
 import FirebaseService from "./FirebaseService";
 import { addDoc, collection } from "firebase/firestore";
 
@@ -21,7 +22,7 @@ function Post(){
     }
   });
 
-  function createPost (){
+  async function createPost(){
     console.log(productName)
     console.log(productPrice)
     if(productName === "" || productPrice === ""){
@@ -30,7 +31,7 @@ function Post(){
     else{
       const db = FirebaseService();
       const ProductCollectionRef = collection(db,"products")
-      addDoc(ProductCollectionRef, {
+      await addDoc(ProductCollectionRef, {
           product_name: productName,
           product_desc: productDesc,
           product_price: productPrice,
@@ -41,8 +42,13 @@ function Post(){
           product_categ:productCateg,
           product_categ_others:productCategOthers
       })
+      console.log("uploaded to firestore")
       window.location.reload()
     }
+  }
+
+  const getURLFromChild = (theURL) => {
+    setPicURL(theURL)
   }
 
 
@@ -71,7 +77,8 @@ function Post(){
     </div>
       <label><h5>เพิ่มรูปภาพ</h5></label>
       <br/>
-      <UploadService picURLprops={picURL} setPicURLprops={setPicURL}/>
+      <UploadService childToParent={getURLFromChild}/>
+      <button onClick={() =>{console.log("received url : ",picURL)}} >check here</button>
          <br/><br/>
       <button type="button" class="btn btn-primary-dark" align="center" onClick={() => {createPost()}}>สร้างประกาศ</button>
       

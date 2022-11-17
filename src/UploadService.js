@@ -5,10 +5,9 @@ import FileBase64 from "react-file-base64";
 import { useState, useEffect } from "react";
 
 
-function UploadService(props) {
+function UploadService({childToParent}) {
     const [picURL, setPicURL] = useState("");
     const [fileLocation,setFileLocation] = useState("");
-    const pat = /^(?:.+)(?:,)(.+)$/;
     const uploadAxios = async () => {
 
         try {
@@ -30,8 +29,7 @@ function UploadService(props) {
               .then((response) => {
                 console.log("API response ↓");
                 console.log(response);
-                setPicURL(response.data.data.display_url)
-                props.setPicURLprops(response.data.data.display_url)
+                childToParent(response.data.data.display_url)
                 
               })
               .catch((err) => {
@@ -50,26 +48,26 @@ function UploadService(props) {
             console.log(error);
           }}
 
-    
+    useEffect(() => {
+      uploadAxios()
+      
+    }, [fileLocation]);
+
+
     useEffect(() => {
         console.log("uploaded : ",picURL)
+        
     }, [picURL]);
 
 
     return(
-
         <div>
             <FileBase64 multiple={false} onDone={({base64}) => {
-              console.log("init encoding")
-                var cleanFile = base64.replace(/.+,/g, "")
-                setFileLocation(cleanFile)
-                console.log("done encoding, calling upload")
-                uploadAxios()
-                
+                setFileLocation(base64.replace(/^(.+?),/g, ""))
+                console.log("done encoding+regex, calling upload")
                 }}/> <br/>
-
-
-        </div>)
+        </div>
+        )
 }
 
 export default UploadService;

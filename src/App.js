@@ -20,6 +20,7 @@ import Landing from './Landing';
 import Post from './Post';
 import BottomNavBar from './BottomNavBar';
 import UploadService from './UploadService';
+import ParentDemo from './ParentDemo';
 
 
 
@@ -39,6 +40,7 @@ const App = () => {
         <Route path="/productcontainer" element={<ProductContainer/>}/>
         <Route path="/post" element={<Post/>}></Route>
         <Route path="/demo" element={<UploadService></UploadService>}></Route>
+        <Route path="/democomponent" element={<ParentDemo></ParentDemo>}></Route>
     </Routes>
     </div>
     </ErrorBoundary></div>);
