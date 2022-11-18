@@ -21,6 +21,7 @@ import Post from './Post';
 import BottomNavBar from './BottomNavBar';
 import UploadService from './UploadService';
 import ParentDemo from './ParentDemo';
+import Browse from './Browse';
 
 
 
@@ -41,6 +42,7 @@ const App = () => {
         <Route path="/post" element={<Post/>}></Route>
         <Route path="/demo" element={<UploadService></UploadService>}></Route>
         <Route path="/democomponent" element={<ParentDemo></ParentDemo>}></Route>
+        <Route path="/browse" element={<Browse></Browse>}></Route>
     </Routes>
     </div>
     </ErrorBoundary></div>);
