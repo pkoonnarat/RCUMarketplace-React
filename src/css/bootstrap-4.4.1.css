@@ -375,9 +375,15 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .cu-accent-color{
-  background-color: #e48ebb;
+  background-color: 
+  #e48ebb;
 }
-
+.rcu-bg-color{
+  background-color: #F5F5F5;
+}
+.rcu-light-color{
+  background-color: #FAF7F2;
+}
 .button-p1:hover{
 	color: #000000;
   background-color: #fff;

@@ -1,5 +1,8 @@
 import { Component } from "react";
-
+import {AiFillHome, AiOutlinePlusSquare} from "react-icons/ai"
+import {FaUserAlt} from "react-icons/fa"
+import { IconContext } from "react-icons";
+import { Link } from "react-router-dom";
 
 class BottomNavBar extends Component {
     constructor(props) {
@@ -8,8 +11,12 @@ class BottomNavBar extends Component {
     state = {  }
     render() { 
         return ( 
-    <nav class="navbar fixed-bottom navbar-light cu-accent-color">
-        <a class="navbar-brand" href="#">Fixed bottom</a>
+    <nav class="navbar fixed-bottom navbar-light rcu-light-color">
+        <IconContext.Provider value={{color:"black",size:"2em"}}>
+            <Link to="/browse"><AiFillHome/></Link>
+            <Link to="/create"><AiOutlinePlusSquare/></Link>
+            <Link to="/profile"><FaUserAlt/></Link>
+        </IconContext.Provider>
     </nav>
 
       );

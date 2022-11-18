@@ -12,7 +12,7 @@ import {collection, Firestore, getDocs, addDoc, doc, updateDoc, getFirestore, in
 //import LineLogin from './LineLogin';
 import liff from '@line/liff';
 //import { Router } from 'express';
-import logo from './logo.svg';
+
 import Navbar from './Navbar';
 import Register from './Register';
 import ProductContainer from './ProductContainer';
@@ -30,7 +30,7 @@ const App = () => {
   return(<div>
     <ErrorBoundary><div>
       <Navbar/>
-      
+      <BottomNavBar/>
       </div>
       <br></br>
       <br></br>
