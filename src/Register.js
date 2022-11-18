@@ -58,7 +58,7 @@ function Register() {
       .then((profile) => {
         setDisplayName(profile.displayName);
         setPictureUrl(profile.pictureUrl);
-        console.log(profile.pictureUrl);
+        
         setStatusMessage(profile.statusMessage);
         setUserId(profile.userId);
         setLineID(profile.userId); /// ALWAYS SET CONST INSIDE A FUNCTION

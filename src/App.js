@@ -3,14 +3,12 @@ import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import './index.css';
 import './views/home.css'
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState,useContext, createContext } from "react";
 //import { ReactDOM } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import {collection, Firestore, getDocs, addDoc, doc, updateDoc, getFirestore, initializeFirestore} from "firebase/firestore";
-//import LineLogin from './LineLogin';
-import liff from '@line/liff';
+
 //import { Router } from 'express';
 
 import Navbar from './Navbar';
@@ -27,7 +25,14 @@ import Browse from './Browse';
 
 //<BottomNavBar/> เอาออกก่อน
 const App = () => {
-  return(<div>
+  const [LineID,setLineID] = useState("")
+  // call LiffLogin and get userId
+  const UserContext = createContext();
+
+
+
+
+  return(<div><UserContext.Provider value={LineID}>
     <ErrorBoundary><div>
       <Navbar/>
       <BottomNavBar/>
@@ -43,9 +48,10 @@ const App = () => {
         <Route path="/demo" element={<UploadService></UploadService>}></Route>
         <Route path="/democomponent" element={<ParentDemo></ParentDemo>}></Route>
         <Route path="/browse" element={<Browse></Browse>}></Route>
+        
     </Routes>
     </div>
-    </ErrorBoundary></div>);
+    </ErrorBoundary></UserContext.Provider></div>);
 
 }
 

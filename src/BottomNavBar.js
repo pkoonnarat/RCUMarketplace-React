@@ -14,7 +14,7 @@ class BottomNavBar extends Component {
     <nav class="navbar fixed-bottom navbar-light rcu-light-color">
         <IconContext.Provider value={{color:"black",size:"2em"}}>
             <Link to="/browse"><AiFillHome/></Link>
-            <Link to="/create"><AiOutlinePlusSquare/></Link>
+            <Link to="/post"><AiOutlinePlusSquare/></Link>
             <Link to="/profile"><FaUserAlt/></Link>
         </IconContext.Provider>
     </nav>
