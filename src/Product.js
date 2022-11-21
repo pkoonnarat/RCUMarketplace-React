@@ -1,7 +1,7 @@
-import { addDoc, collection, doc,getDoc,getFirestore } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc,getDoc,getFirestore } from "firebase/firestore";
 import { initializeApp } from 'firebase/app';
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import FirebaseService from "./FirebaseService"
 import { useState } from "react";
 import "./css/bootstrap-4.4.1.css"
@@ -9,9 +9,12 @@ import AuthContext from "./ContextProvider";
 import { useContext } from "react";
 
 export default function Product () {
+    const [ordered,setOrdered] = useState(false)
     const {auth} = useContext(AuthContext)
     const [prodID,setProdID] = useState("")
+    const [orderID,setOrderID] = useState('')
     const {id} = useParams()
+    const navigate = useNavigate()
     const firebaseConfig = {
         apiKey: "AIzaSyBtD4fzZm4jRRLL-Kba211etI6jJJl1yko",
         authDomain: "rcumarketplace.firebaseapp.com",
@@ -21,9 +24,9 @@ export default function Product () {
         appId: "1:560613943301:web:eb0d0bda5009f4090e146c",
         measurementId: "G-6X6W93HP1P",
     };
-
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const OrderCollectionRef = collection(db,"order")
     var [productData,setProductData] = useState({})
     console.log("product page runs")
 
@@ -40,7 +43,7 @@ export default function Product () {
     useEffect(() => {getProductDetails()},[])
 
     async function createOrder(){
-        const OrderCollectionRef = collection(db,"order")
+        
       await addDoc(OrderCollectionRef, {
           product_id: prodID,
           product_name: productData.product_name,
@@ -52,10 +55,18 @@ export default function Product () {
           creator_id: auth.userID,
           creator_name: auth.FSUsername,
           creator_pic: auth.pictureUrl
-      })
+      }).then(docRef => {setOrderID(docRef.id)})
       console.log("uploaded to firestore")
+      setOrdered(true)
 
+    }
 
+    async function deleteOrder(){
+        const docRef = doc(db,"order",orderID.toString())
+        await deleteDoc(docRef).then(() => {
+            setOrdered(false)
+        })
+    
     }
 
 
@@ -89,8 +100,9 @@ export default function Product () {
 			  <img src={productData.user_url} class="rounded-circle" alt="Cinque Terre" width="100" height="100"/><h5 class="card-title">{productData.user_name}</h5></div>
 			<div class="container-fluid col-md-6 wrap-container">
 				<div class="container">		    
-					<button type="button" class="button-cap">พูดคุย</button>
-                    <button type="button" class="button-cap" onClick={() => {createOrder()}}>สร้างคำสั่งซื้อ</button>
+					<button type="button" class="button-cap" onClick={() => {navigate("/chat")}}>พูดคุย</button>
+                    {ordered === false? <button type="button" class="button-cap" onClick={() => {createOrder()}}>สร้างคำสั่งซื้อ</button>: <button type="button" class="button-cap" onClick={() => {deleteOrder()}}>เสร็จสิ้น</button>}
+                    
 				</div>
                 <br/><br/><br/>
 			  		  </div>

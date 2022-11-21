@@ -28,6 +28,8 @@ import Landing from "./Landing"
 import { useNavigate } from 'react-router-dom';
 import Product from './Product';
 import AuthService from './AuthService';
+import Profile from './Profile';
+import ChatUI from './ChatUI';
 
 export const ProductListContext = createContext({})
 
@@ -43,7 +45,7 @@ export default function App() {
   return(<div>
         <ProductListContext.Provider value={{productList,setProductList}}>
         <div>
-          
+
           <BottomNavBar/>
 
         </div>
@@ -58,6 +60,8 @@ export default function App() {
               <Route path="/democomponent" element={<ParentDemo></ParentDemo>}></Route>
               <Route path="/browse" element={<Browse></Browse>}></Route>
               <Route path="/product/:id" element={<Product></Product>}></Route>
+              <Route path="/profile" element={<Profile></Profile>}></Route>
+              <Route path="/chat" element={<ChatUI></ChatUI>}></Route>
           </Routes>
         </div>
 

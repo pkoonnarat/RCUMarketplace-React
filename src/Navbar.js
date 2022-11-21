@@ -18,6 +18,7 @@ const Navbar = () => {
         <Link to="/productcontainer">ProductContainer (DO NOT RUN)</Link>
         <Link to="/post">Post Box</Link>
         <Link to="/demo">IMG UPload</Link>
+        <Link to="/chat">Chat</Link>
     </nav>
     
     );

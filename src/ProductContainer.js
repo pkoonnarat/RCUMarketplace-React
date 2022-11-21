@@ -1,9 +1,6 @@
-import FirebaseService from "./FirebaseService";
-import { getDoc, collection, doc } from "firebase/firestore";
+
 import "./css/bootstrap-4.4.1.css"
-import defaultimg from "./img/image-4.jpeg"
-import { useState } from "react";
-import { useEffect } from "react";
+
 import { Link } from "react-router-dom";
 
 

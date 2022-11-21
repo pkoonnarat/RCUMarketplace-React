@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import ProductContainer from "./ProductContainer";
 import { ProductListContext } from "./App";
 export default function Browse(){
-    const {setProductList} = useContext(ProductListContext)
+    const {productList,setProductList} = useContext(ProductListContext)
     console.log("BROWSE RUNS");
     const [productCol, setProductCol] = useState({});
     const [done,setDone] = useState(false);
@@ -24,7 +24,7 @@ export default function Browse(){
     }),[])
 
     useEffect(() => {
-        console.log(productCol)
+        console.log(productList)
     }, [productCol]);
 
 
