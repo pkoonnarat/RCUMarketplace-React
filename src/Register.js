@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Link, Router } from "react-router-dom";
+import { BrowserRouter, Link, Router, useNavigate } from "react-router-dom";
 import {
   collection,
   Firestore,
@@ -17,23 +17,30 @@ import './FirebaseService'
 import FirebaseService from "./FirebaseService";
 
 function Register() {
+  const navigate = useNavigate()
   const [createFName, setFName] = useState("");
   const [createLName, setLName] = useState("");
   const [createRoom, setRoom] = useState("");
   const [createLineID, setLineID] = useState("");
   const [creatUserName, setUserName] = useState("");
+  const [createNisitID, setNisitID] = useState("")
 
   const [pictureUrl, setPictureUrl] = useState(logo);
   const [idToken, setIdToken] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
   const [userId, setUserId] = useState("");
+  const [addDocDone, setaddDocDone] = useState(false);
+  useEffect((() => {
+    console.log("Register is done");
+    if(addDocDone) navigate('/browse')
+  }),[addDocDone])
+  useEffect(() => {
+    initLine();
+  }, []);
 
-  const logout = () => {
-    liff.logout();
-    window.location.reload();
-  };
 
+  
   const initLine = () => {
     liff.init(
       { liffId: "1657632240-qZ0KjWll" },
@@ -66,9 +73,7 @@ function Register() {
       .catch((err) => console.error(err));
   };
 
-  useEffect(() => {
-    initLine();
-  }, []);
+
 
   /////////////// SEND DATA TO FIRESTORE //////////
   const db = FirebaseService()
@@ -81,10 +86,14 @@ function Register() {
       room: createRoom,
       register_time: Date.now(),
       lineid: createLineID,
+      nisitid: createNisitID,
+      username: creatUserName
     });
-    window.location.reload();
+    setaddDocDone(true)
+    console.log("userCreated")
   };
 
+ 
   console.log("how many time it's printed?");
 
 
@@ -115,7 +124,7 @@ function Register() {
               <small id="emailHelp1" class="form-text text-muted">เราสัญญาว่าจะไม่เปิดเผยชื่อจริงของคุณ</small> </div>
             <div class="form-group">
               <label for="exampleInputEmail1">ยูสเซอร์เนม</label>
-              <input class="form-control" onChange={(event) => {setFName(event.target.value)}} placeholder="Enter username" value={displayName}/>
+              <input class="form-control" onBlur={(event) => {setUserName(event.target.value)}}/>
               <small id="emailHelp1" class="form-text text-muted">ชื่อที่แสดงให้ผู้ใช้คนอื่น</small> 
             </div>
             <div class="form-group">
@@ -124,8 +133,8 @@ function Register() {
               <div className="col"><label for="exampleInputEmail1">รหัสนิสิต</label></div>
               </div>
               <div className="row">
-                <div className="col"><input class="form-control" onChange={(event) => {setFName(event.target.value)}} placeholder="000A"/></div>
-                <div className="col"><input class="form-control" onChange={(event) => {setFName(event.target.value)}} placeholder="รหัสนิสิต 10 หลัก"/></div>
+                <div className="col"><input class="form-control" onChange={(event) => {setRoom(event.target.value)}} placeholder="000A"/></div>
+                <div className="col"><input class="form-control" onChange={(event) => {setNisitID(event.target.value)}} placeholder="รหัสนิสิต 10 หลัก"/></div>
               </div>
               <small id="emailHelp1" class="form-text text-muted">ข้อมูลนี้จะไม่ถูกเปิดเผย</small> 
             </div>
@@ -134,7 +143,7 @@ function Register() {
               <label class="form-check-label" for="exampleCheck1">สัญญาว่าจะไม่โกง</label>
             </div>
             <br></br>
-            <button class="btn btn-primary"onClick={() => {createUser()}}>เริ่มใช้งาน</button>
+            <button class="btn btn-primary" type="button" onClick={() => {createUser()}}>เริ่มใช้งาน</button>
           </form>
           <br></br>
         </form>

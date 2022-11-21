@@ -1,12 +1,13 @@
 import React,{useState,useEffect} from "react";
-import { Component } from "react";
 import "./css/bootstrap-4.4.1.css"
 import UploadService from "./UploadService";
-import ImgUploadService from "./ImgUploadService";
 import FirebaseService from "./FirebaseService";
 import { addDoc, collection } from "firebase/firestore";
+import AuthContext from "./ContextProvider";
+import { useContext } from "react";
 
 function Post(){
+  const user = useContext(AuthContext);
   const [productName,setProductName] = useState("");
   const [productDesc,setProductDesc] = useState("");
   const [productType,setProductType] = useState("")
@@ -39,8 +40,11 @@ function Post(){
           created_time: Date.now(),
           pictureUrl: picURL,
           product_type: productType,
-          product_categ:productCateg,
-          product_categ_others:productCategOthers
+          product_categ: productCateg,
+          product_categ_others:productCategOthers,
+          user_id: user.auth.userID,
+          user_url: user.auth.pictureUrl,
+          user_name: user.auth.FSUsername
       })
       console.log("uploaded to firestore")
       window.location.reload()
@@ -64,8 +68,8 @@ function Post(){
         <div onChange={(event) => {
            setProductCateg(event.target.value)}}>
       <h5>Tags</h5>
-        <label><input type="radio" name="categ" value="food"></input> อาหาร </label>
-        <label><input type="radio" name="categ" value="household"></input> ของใช้ </label>
+        <label><input type="radio" name="categ" value="อาหาร"></input> อาหาร </label>
+        <label><input type="radio" name="categ" value="ของใช้"></input> ของใช้ </label>
         <label><input type="radio" name="categ" value="other" onBlur={(event) => {setProductCategOthers(event.target.value)}}></input> อื่น ๆ </label>
         </div>
         <input id="others" disabled></input>

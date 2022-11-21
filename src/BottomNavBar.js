@@ -11,7 +11,7 @@ class BottomNavBar extends Component {
     state = {  }
     render() { 
         return ( 
-    <nav class="navbar fixed-bottom navbar-light rcu-light-color">
+    <nav className="navbar fixed-bottom navbar-light rcu-light-color">
         <IconContext.Provider value={{color:"black",size:"2em"}}>
             <Link to="/browse"><AiFillHome/></Link>
             <Link to="/post"><AiOutlinePlusSquare/></Link>
