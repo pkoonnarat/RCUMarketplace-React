@@ -63,15 +63,6 @@ export default function Product () {
 
     return(
         <body>
-  	        <nav class="navbar bg-light ">
-                <div class="container-fluid">
-                    <input type="image" name="Name of image button" src="./dummycode/box-arrow-left.svg" width="30" alt="text"></input>
-                        <form class="d-flex" role="search">
-                        <br/>
-		
-                        </form>
-                </div>
-            </nav>
             <br/><br/><br/>
         <div class="container-fluid">
 	        <div class="container">

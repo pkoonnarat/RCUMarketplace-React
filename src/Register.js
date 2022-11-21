@@ -40,7 +40,7 @@ function Register() {
   }, []);
 
 
-  
+
   const initLine = () => {
     liff.init(
       { liffId: "1657632240-qZ0KjWll" },
@@ -116,7 +116,7 @@ function Register() {
         <form>
           <form class="col-lg-12">
             <div class="form-group">
-              <label for="exampleInputEmail1">ชื่อจริง ๆ</label>
+              <label for="exampleInputEmail1">ชื่อจริง</label>
               <div className="row">
               <div className="col"><input class="form-control" onChange={(event) => {setFName(event.target.value)}} placeholder="ชื่อจริง"/></div>
               <div className="col"><input class="form-control" id="exampleInputPassword1" onChange={(event) => {setLName(event.target.value)}} placeholder="นามสกุล"/></div>

@@ -82,7 +82,6 @@ function Post(){
       <label><h5>เพิ่มรูปภาพ</h5></label>
       <br/>
       <UploadService childToParent={getURLFromChild}/>
-      <button onClick={() =>{console.log("received url : ",picURL)}} >check here</button>
          <br/><br/>
       <button type="button" class="btn btn-primary-dark" align="center" onClick={() => {createPost()}}>สร้างประกาศ</button>
       
