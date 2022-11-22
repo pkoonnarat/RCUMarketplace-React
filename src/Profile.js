@@ -50,7 +50,7 @@ export default function Profile(){
     return(
         <>
         <div class="container rcu-light-color">
-  <header>{auth.FSUsername}</header>
+  <h3>{auth.FSUsername}</h3>
 </div>
 	<img src={auth.pictureUrl} class="rounded-circle" width="100" height="100" alt=""/> 
 	<hr/>
@@ -64,7 +64,7 @@ export default function Profile(){
 	{buttonActive === false? userPosted.map((product) => {
             return (<>
             <ProductContainer productProp={product}/>
-            <button className="btn btn-danger btn-sm" >ลบ</button>
+            <center><button className="btn btn-danger btn-sm" >ลบ</button></center>
             </>)
         }) : orderList.map((product) => {
             return <OrderContainer productProp={product}/>
