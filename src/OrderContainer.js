@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 
 export default function OrderContainer({productProp}){
-    
+    const url = "/product/"+ productProp.product_id
     return(
     <div className="col-md-4 pb-1 pb-md-0 rcorners2 bg-light">
-        <Link to="" style={{ color: '#000' }}>
+        <Link to={url} style={{ color: '#000' }}>
         <div>
             <div className="card-body">
             <h2 className="card-title">{productProp.product_name}</h2>

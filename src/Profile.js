@@ -62,7 +62,10 @@ export default function Profile(){
 	</div>
 <div>
 	{buttonActive === false? userPosted.map((product) => {
-            return <ProductContainer productProp={product}/>
+            return (<>
+            <ProductContainer productProp={product}/>
+            <button className="btn btn-danger btn-sm" >ลบ</button>
+            </>)
         }) : orderList.map((product) => {
             return <OrderContainer productProp={product}/>
         }) }
